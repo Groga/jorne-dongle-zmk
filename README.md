@@ -124,6 +124,28 @@ west build -p -b nice_nano_v2 -d build_right -- -DSHIELD=jorne_right
   `jorne_dongle.overlay` физраскладка не совпадает с той, что использует
   `jorne_left`/`jorne_right` — сверьтесь заново с апстримным `jorne.dtsi`.
 
+## Визуальное отображение раскладки
+
+В репозитории уже есть `.github/workflows/keymap-drawer.yml` — он использует
+инструмент [keymap-drawer](https://github.com/caksoylar/keymap-drawer) и при
+каждом пуше, меняющем `jorne_dongle.keymap`, автоматически:
+1. разбирает keymap на слои/behaviors/комбо;
+2. рисует SVG-картинку итоговой раскладки;
+3. коммитит её в папку `keymap-drawer/` вашего репозитория.
+
+После первого пуска экшена вставьте картинку в README командой:
+```markdown
+![keymap](keymap-drawer/jorne_dongle.svg)
+```
+
+Если хотите **редактировать раскладку визуально мышкой** (а не руками в
+devicetree-синтаксисе), используйте веб-редактор
+https://nickcoutsos.github.io/keymap-editor — он умеет открывать ваш GitHub
+репозиторий напрямую (авторизация через GitHub), показывает клавиатуру
+графически, а изменения сохраняет обратно коммитом в `jorne_dongle.keymap`.
+После такого коммита сборка (build.yaml) и отрисовка SVG (keymap-drawer)
+запустятся автоматически.
+
 ## Полезные готовые примеры для сверки
 - https://github.com/aroum/zmk-enki42-dongle — донгл-конфиг для
   Corne-подобных клавиатур (структура очень похожа на предложенную здесь).

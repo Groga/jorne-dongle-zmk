@@ -13,15 +13,34 @@
 #   Наш дополнительный shield "jorne_dongle" лежит локально, в
 #   config/boards/shields/jorne_dongle, и west подхватывает его
 #   автоматически как часть текущего репозитория (app-config-репо).
+#
+# ПРОВЕРКА (сделайте один раз перед сборкой!):
+#   после `west update` посмотрите, есть ли папка jorne здесь:
+#   zmk/app/boards/shields/jorne
+#
+#   Если папки НЕТ — значит в вашей версии апстрима shield jorne ещё не
+#   влит, и нужно закомментировать блок "ВАРИАНТ 1" ниже и раскомментировать
+#   "ВАРИАНТ 2" (форк автора клавиатуры joric/zmk, ветка jorne), затем
+#   заново выполнить `west update`.
 # =============================================================================
 manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    # ВАРИАНТ 2 (запасной remote, раскомментируйте при необходимости):
+    # - name: joric
+    #   url-base: https://github.com/joric
   projects:
+    # --- ВАРИАНТ 1: официальный апстрим (пробуем по умолчанию) ---
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    # --- ВАРИАНТ 2: форк автора Jorne, если jorne нет в апстриме ---
+    # закомментируйте блок выше и раскомментируйте этот:
+    # - name: zmk
+    #   remote: joric
+    #   revision: jorne
+    #   import: app/west.yml
   self:
     path: config
