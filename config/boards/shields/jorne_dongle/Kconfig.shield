@@ -1,0 +1,11 @@
+# =============================================================================
+# Kconfig.shield — jorne_dongle
+#
+# Версия: 1.0.0
+# Автор:  Evgeniy Moskovkin
+#
+# Регистрирует новый shield "jorne_dongle" для west/CMake, чтобы можно было
+# собрать: west build -b <board> -- -DSHIELD=jorne_dongle
+# =============================================================================
+config SHIELD_JORNE_DONGLE
+    def_bool $(shield_is,jorne_dongle)

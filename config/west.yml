@@ -1,0 +1,27 @@
+# =============================================================================
+# west.yml — манифест сборки ZMK для клавиатуры Jorne в режиме "донгл"
+#
+# Проект:  jorne-dongle-zmk
+# Версия:  1.0.0
+# Автор:   Evgeniy Moskovkin
+# Дата:    2026-08-28
+#
+# Назначение:
+#   Подключает официальный репозиторий ZMK как источник прошивки.
+#   Shield "jorne" (jorne_left / jorne_right) уже входит в апстрим ZMK,
+#   поэтому отдельно его подтягивать не нужно — достаточно самого ZMK.
+#   Наш дополнительный shield "jorne_dongle" лежит локально, в
+#   config/boards/shields/jorne_dongle, и west подхватывает его
+#   автоматически как часть текущего репозитория (app-config-репо).
+# =============================================================================
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+  self:
+    path: config
